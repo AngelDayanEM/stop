@@ -10,5 +10,45 @@
     <li><a href="./../index.html">[Principal]</a></li>
     <li><a href="./../Subsistemas/Servicios.html">[Servicios]</a></li>
 </ul>
+<h1>Diagrama de la base de datos del subsistema</h1>
+
+<img src="../imagenes/DiagramaBD.png" alt="" width="600">
+
+
+<h2>Pertinencia de la arquitectura de la base de datos</h2>
+
+<p> La arquitectura de esta base de datos es adecuada y pertinente para el subsistema de servicios (presidenciales), 
+    ya que permite almacenar y gestionar eficientemente la información relacionada con los diversos servicios ofrecidos,
+     por los siguientes aspectos: </p>
+
+     <h4>Tabla "Departamento": </h4>
+
+       <li>Esta tabla almacena la información de los diferentes departamentos que están relacionados con los servicios presidenciales.
+         Esto permite una organización y categorización adecuada de los servicios. </li>
+       <li>Los campos "ID_Departamento" y "Descripcion" son relevantes para identificar y caracterizar cada departamento.</li>
+
+
+     <h4>Tabla "JefeDepartamento": </h4>
+
+       <li>Esta tabla guarda los datos de los jefes de cada departamento, como su nombre, apellido y número de teléfono. </li>
+       <li>Esto permite tener un registro de los responsables de cada departamento y facilita la comunicación y coordinación entre ellos.</li>
+
+
+     <h4>Tabla "Servicio": </h4>
+
+       <li>Esta tabla es el núcleo del subsistema, ya que almacena la información detallada de cada servicio presidencial </li>
+       <li>Los campos "ID_Servicio", "ID_Departamento", "Tipo_Servicio", "Descuento", "Costo" son fundamentales para caracterizar cada servicio de manera completa.</li>
+
+       <h4>Tabla "RequeriemientoServicio": </h4>
+
+       <li>Esta tabla se relaciona directamente con la tabla "Servicio" y permite registrar los requerimientos específicos de cada servicio. </li>
+       <li>Los campos "ID_Requerimiento", "ID_Servicio", "Comprobante_Identidad" y "Comprobante_nomina" son importantes para documentar y hacer un seguimiento de los requerimientos de cada servicio.</li>
+
+       <p> Además, las relaciones entre las tablas son óptimas ya que facilitan la consulta y el manejo de la información.
+         Por ejemplo, la relación entre "Departamento" y "Servicio" permite vincular cada servicio con el departamento correspondiente,
+         lo cual es fundamental para la organización y gestión de los servicios  </p>
+   
+
+
 </body>
 </html>
