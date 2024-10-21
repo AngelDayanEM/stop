@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/dbcss.css">
 </head>
 <body>
     <ul></ul>
-    <li><a href="./../index.html">[Principal]</a></li>
-    <li><a href="./../Subsistemas/Servicios.html">[Servicios]</a></li>
+    <li><a href="./../index.html">Principal</a></li>
+    <li><a href="./../Subsistemas/Servicios.html">Servicios</a></li>
 </ul>
 <h1>Diagrama de la base de datos del subsistema</h1>
 
 <img src="../imagenes/DiagramaBD.png" alt="" width="600">
 
 
-<h2 style="color:blue">Pertinencia de la arquitectura de la base de datos</h2>
+<h2>Pertinencia de la arquitectura de la base de datos</h2>
 
 <p> La arquitectura de esta base de datos es adecuada y pertinente para el subsistema de servicios (presidenciales), 
     ya que permite almacenar y gestionar eficientemente la información relacionada con los diversos servicios ofrecidos,
@@ -48,7 +49,7 @@
          Por ejemplo, la relación entre "Departamento" y "Servicio" permite vincular cada servicio con el departamento correspondiente,
          lo cual es fundamental para la organización y gestión de los servicios  </p>
    
-      <h2 style="color:blue">Como es que la pertinencia de laarquitectura de la base de datos satisfase los requerimientos de cada Usuario</h2>
+      <h2>Como es que la pertinencia de laarquitectura de la base de datos satisfase los requerimientos de cada Usuario</h2>
 
       <p>Para el administrador, la estructura de la base de datos facilita la modificación de los elementos clave del sistema. En la tabla "Servicio",
         el administrador puede actualizar fácilmente el "Costo" de los servicios cuando sea necesario. Además, en la tabla "RequeriemientoServicio", el a
@@ -60,13 +61,98 @@
          Asimismo, al vincular cada servicio con su departamento correspondiente a través del campo "ID_Departamento", y al almacenar los detalles de los requerimientos en la tabla "RequeriemientoServicio",
          el ciudadano puede acceder a esta información y consultar los requisitos y el departamento relacionado con cada servicio. </p>
 
-         <h2 style="color:blue">Cumplimiento de las tres primeras reglas </h2>
+         <h2>Cumplimiento de las tres primeras reglas </h2>
 
          <p>En primer lugar, la base de datos cumple con la Primera Forma Normal (1NF). Cada entidad, como "Departamento", "JefeDepartamento" y "Requerimiento_Servicio", contiene únicamente valores atómicos en sus atributos, es decir, no hay grupos repetitivos o columnas que contengan múltiples valores. Además, cada fila es única gracias a la definición de una clave primaria en cada tabla. Esto asegura que no haya redundancia de datos y que cada registro pueda ser identificado de manera única.
           En segundo lugar, la base de datos cumple con la Segunda Forma Normal (2NF). Todas las entidades ya están en 1NF, y los atributos no clave dependen completamente de la clave primaria, sin que haya dependencias parciales. Por ejemplo, en la entidad "JefeDepartamento", los atributos como "FName", "LName" y "Telefono" dependen por completo de la clave primaria compuesta por "ID_Jefe" e "ID_Departamento".
           Finalmente, la base de datos también cumple con la Tercera Forma Normal (3NF). Todas las entidades ya están en 2NF, y no existen dependencias transitivas entre los atributos no clave. Los datos se encuentran desagregados en entidades separadas, como "Departamento" y "Servicio", lo que evita que haya atributos que dependan de otros atributos no clave.
           Al cumplir con estas tres formas normales, la base de datos garantiza una organización eficiente de los datos, evitando la redundancia y asegurando la consistencia de la información. Esto facilita la gestión, el mantenimiento y la integridad de los datos, lo cual es crucial para un subsistema de servicios donde la confiabilidad y la precisión de la información son fundamentales.
            </p>
+      
+           <h1>Código SQL para la Base de Datos</h1>
+           <pre><code>
+       CREATE DATABASE STOPS_BD_2;
+       
+       USE STOPS_BD_2;
+       
+       -- Tabla Servicio
+       CREATE TABLE Servicio (
+         ID_Servicio INT PRIMARY KEY,
+         ID_Departamento INT,
+         Tipo_Servicio VARCHAR(200),
+         Descuento INT,
+         Costo INT
+       );
+       
+       -- Tabla Departamento
+       CREATE TABLE Departamento (
+         ID_Departamento INT PRIMARY KEY,
+         Descripcion VARCHAR(100)
+       );
+       
+       -- Tabla Jefe de Departamento
+       CREATE TABLE JefeDepartamento (
+         ID_Jefe INT PRIMARY KEY,
+         ID_Departamento INT,
+         FName VARCHAR(10),
+         LName VARCHAR(10),
+         Telefono VARCHAR(20)
+       );
+       
+       -- Tabla RequerimientoServicio
+       CREATE TABLE RequerimientoServicio (
+         ID_Requerimiento INT PRIMARY KEY,
+         ID_Servicio INT,
+         Comprobante_Identidad VARCHAR(200),
+         Comprobante_nomina CHAR(2)
+       );
+       
+       ALTER TABLE Servicio
+       ADD CONSTRAINT FK_Servicio_Departamento FOREIGN KEY (ID_Departamento)
+       REFERENCES Departamento(ID_Departamento);
+       
+       ALTER TABLE RequerimientoServicio
+       ADD CONSTRAINT FK_RequerimientoServicio_Servicio FOREIGN KEY (ID_Servicio)
+       REFERENCES Servicio(ID_Servicio);
+       
+       ALTER TABLE JefeDepartamento
+       ADD CONSTRAINT FK_jefedepartamento_Departamento FOREIGN KEY (ID_Departamento)
+       REFERENCES Departamento(ID_Departamento);
+           </code></pre>
+
+           <h1>Código SQL para la incercion de registros a la Base de Datos</h1>
+           <pre><code>
+      
+INSERT INTO Servicio (ID_Servicio, ID_Departamento, Tipo_Servicio, Descuento, Costo) VALUES
+(1, 1, 'Mantenimiento', 10, 150),
+(2, 2, 'Limpieza', 5, 100),
+(3, 1, 'Seguridad', 0, 200),
+(4, 3, 'Asesoría', 15, 250),
+(5, 2, 'Transporte', 20, 80);
+
+INSERT INTO Departamento (ID_Departamento, Descripcion) VALUES
+(1, 'Mantenimiento'),
+(2, 'Limpieza'),
+(3, 'Seguridad'),
+(4, 'Asesoría'),
+(5, 'Transporte');
+
+INSERT INTO JefeDepartamento (ID_Jefe, ID_Departamento, FName, LName, Telefono) VALUES
+(1, 1, 'Juan', 'Pérez', '555-1234'),
+(2, 2, 'Ana', 'García', '555-5678'),
+(3, 3, 'Luis', 'Martínez', '555-8765'),
+(4, 4, 'María', 'Lopez', '555-4321'),
+(5, 5, 'Carlos', 'Hernández', '555-6789');
+
+
+INSERT INTO RequerimientoServicio (ID_Requerimiento, ID_Servicio, Comprobante_Identidad, Comprobante_nomina) VALUES
+(1, 1, 'ID123456', 'S'),
+(2, 2, 'ID654321', 'N'),
+(3, 3, 'ID987654', 'S'),
+(4, 4, 'ID456789', 'S'),
+(5, 5, 'ID789456', 'N');
+           </code></pre>
 </body>
+
 
 </html>

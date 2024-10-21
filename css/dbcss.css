@@ -1,0 +1,49 @@
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e9f5ec; /* Verde pastel suave */
+    color: #333; /* Color de texto oscuro para contraste */
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2, h4 {
+    color: #2b7a2b; /* Verde más oscuro para encabezados */
+}
+
+ul {
+    list-style-type: none; /* Eliminar viñetas de la lista */
+    padding: 0; /* Eliminar padding predeterminado */
+}
+
+li {
+    margin: 5px 0; /* Espaciado entre elementos de lista */
+}
+
+a {
+    text-decoration: none; /* Sin subrayado */
+    color: #2b7a2b; /* Color de enlace verde */
+}
+
+a:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+    color: #1e5a1e; /* Un verde más oscuro al pasar el mouse */
+}
+
+img {
+    max-width: 100%; /* Asegurar que la imagen sea responsiva */
+    height: auto; /* Mantener la proporción de la imagen */
+}
+
+pre {
+    background-color: #fff; /* Fondo blanco para el código */
+    border: 1px solid #ccc; /* Borde gris */
+    border-radius: 4px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    overflow-x: auto; /* Permitir desplazamiento horizontal */
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace; /* Tipo de letra monoespaciada para el código */
+}
