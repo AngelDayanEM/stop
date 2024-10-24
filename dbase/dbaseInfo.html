@@ -24,28 +24,41 @@
 
      <h5>Tabla "Departamento": </h5>
 
-       <li>Esta tabla almacena la información de los diferentes departamentos que están relacionados con los servicios presidenciales.
-         Esto permite una organización y categorización adecuada de los servicios. </li>
-       <li>Los campos "ID_Departamento" y "Descripcion" son relevantes para identificar y caracterizar cada departamento.</li>
+       <li>Esta tabla almacena la información de los diferentes departamentos que están relacionados con los servicios presidenciales. </li>
+       <li>El identificador único (ID_Departamento), la descripción del departamento (Descripcion) y el identificador único del jefe de departamento (ID_Jefe).</li>
+       <li>El campo "ID_Jefe" es la llave foránea que relaciona la tabla "Departamento" con la tabla "JefeDepartamento". 
+        Esta relación permite asociar cada departamento con el jefe correspondiente.
+        Al tener esta relación, se puede obtener información detallada sobre el responsable de cada departamento,lo cual es relevante para una organización y categorización adecuada de los servicios. </li>
 
 
      <h5>Tabla "JefeDepartamento": </h5>
 
-       <li>Esta tabla guarda los datos de los jefes de cada departamento, como su nombre, apellido y número de teléfono. </li>
+       <li>Esta tabla guarda los datos de los jefes de cada departamento,esta tabla contiene la información del jefe de cada departamento, como su identificador único (ID_Jefe), primer nombre (Primer_Nombre), 
+        segundo nombre (Segundo_Nombre), apellido paterno (Apellido_Paterno), apellido materno (Apellido_Materno),  Etc. </li>
        <li>Esto permite tener un registro de los responsables de cada departamento y facilita la comunicación y coordinación entre ellos.</li>
  
 
      <h5>Tabla "Servicio": </h5>
 
        <li>Esta tabla es la que almacena la información detallada de cada servicio presidencial </li>
-       <li>Los campos "ID_Servicio", "ID_Departamento", "Tipo_Servicio", "Descuento", "Costo" son fundamentales para caracterizar cada servicio de manera completa.</li>
+       <li>Hablando de manera mas espicifica contiene su identificador único (ID_Servicio), el departamento al que pertenece (ID_Departamento), 
+        el tipo de servicio (Tipo_Servicio), el descuento aplicable (Descuento) y el costo (Costo).
+        Al tener esta información permite administrar y mantener un registro de todos los servicios ofrecidos de manera organizada.</li>
 
-       <h4>Tabla "RequeriemientoServicio": </h4>
+        <h5>Tabla "Requerimiento": </h5>
 
-       <li>Esta tabla se relaciona directamente con la tabla "Servicio" y permite registrar los requerimientos específicos de cada servicio. </li>
-       <li>Los campos "ID_Requerimiento", "ID_Servicio", "Comprobante_Identidad" y "Comprobante_nomina" son importantes para documentar y hacer un seguimiento de los requerimientos de cada servicio.</li>
+       <li>Esta tabla va almacenar la información sobre los diferentes tipos de requerimientos relacionados con los servicios </li>
+       <li>Esta tabla esta conformada por los campos,ID_Requerimiento,  Comprobante_Identidad, Comprobante_nomina, .
+        Al tener esta información se puede administrar de manera más flexible y detallada los diferentes tipos de requisitos que pueden aplicar a los servicios, sin mezclarlos directamente en la tabla "Servicio".</li>
 
-       <p> Además, las relaciones entre las tablas son óptimas ya que facilitan la consulta y el manejo de la información.
+       <h5>Tabla "RequeriemientoServicio": </h5>
+
+       <li>Esta tabla contiene los campos que permiten vincular los registros de la tabla "Servicio" con los registros de la tabla "Requerimiento". Los cuales son "ID_Servicio" y "ID_Requerimiento", que funcionan como llaves foráneas que apuntan a las tablas principales.
+         Es decir que esta tabla actúa como la tabla puente entre las tablas "Servicio" y "Requerimiento" para administrar de manera más eficiente la relación entre los servicios y los requerimientos. </li>
+       <li>Esto permite agregar, modificar o eliminar requerimientos específicos para cada servicio sin afectar directamente la información de las tablas principales.
+        Además, se puede obtener información detallada sobre qué requerimientos aplican a cada servicio y viceversa.</li>
+
+       <p> Asi mismo, las relaciones entre las tablas son óptimas ya que facilitan la consulta y el manejo de la información.
          Por ejemplo, la relación entre "Departamento" y "Servicio" permite vincular cada servicio con el departamento correspondiente,
          lo cual es fundamental para la organización y gestión de los servicios  </p>
    
@@ -83,7 +96,7 @@
    
 
       
-         <h5>Código SQL para la Base de Datos</h2>
+         <h2>Código SQL para la Base de Datos</h2>
            <pre><code>
        CREATE DATABASE STOPS_BD_2;
        
