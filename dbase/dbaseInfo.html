@@ -118,86 +118,114 @@
       
          <h2>Código SQL para crear la Base de Datos</h2>
            <pre><code>
-       CREATE DATABASE STOPS_BD_2;
-       
-       USE STOPS_BD_2;
-       
-       -- Tabla Servicio
-       CREATE TABLE Servicio (
-         ID_Servicio INT PRIMARY KEY,
-         ID_Departamento INT,
-         Tipo_Servicio VARCHAR(200),
-         Descuento INT,
-         Costo INT
-       );
-       
-       -- Tabla Departamento
-       CREATE TABLE Departamento (
-         ID_Departamento INT PRIMARY KEY,
-         Descripcion VARCHAR(100)
-       );
-       
-       -- Tabla Jefe de Departamento
-       CREATE TABLE JefeDepartamento (
-         ID_Jefe INT PRIMARY KEY,
-         ID_Departamento INT,
-         FName VARCHAR(10),
-         LName VARCHAR(10),
-         Telefono VARCHAR(20)
-       );
-       
-       -- Tabla RequerimientoServicio
-       CREATE TABLE RequerimientoServicio (
-         ID_Requerimiento INT PRIMARY KEY,
-         ID_Servicio INT,
-         Comprobante_Identidad VARCHAR(200),
-         Comprobante_nomina CHAR(2)
-       );
-       
-       ALTER TABLE Servicio
-       ADD CONSTRAINT FK_Servicio_Departamento FOREIGN KEY (ID_Departamento)
-       REFERENCES Departamento(ID_Departamento);
-       
-       ALTER TABLE RequerimientoServicio
-       ADD CONSTRAINT FK_RequerimientoServicio_Servicio FOREIGN KEY (ID_Servicio)
-       REFERENCES Servicio(ID_Servicio);
-       
-       ALTER TABLE JefeDepartamento
-       ADD CONSTRAINT FK_jefedepartamento_Departamento FOREIGN KEY (ID_Departamento)
-       REFERENCES Departamento(ID_Departamento);
+            CREATE DATABASE STOPS_BD_3
+
+            USE STOPS_BD_3
+            
+            GO
+            
+            -- Tabla Servicio
+            CREATE TABLE Servicio (
+                ID_Servicio INT PRIMARY KEY,
+              ID_Departamento INT,
+                Tipo_Servicio VARCHAR(200),
+                Descuento FLOAT,
+                Costo FLOAT
+            );
+            
+            --Tabla Requerimiento
+            CREATE TABLE Requerimiento (
+                ID_Requerimiento INT PRIMARY KEY,
+                Comprobante_Identidad VARCHAR(200),
+                Comprobante_nomina CHAR(2)
+              )
+            
+            -- Tabla Departamento
+            CREATE TABLE Departamento (
+                ID_Departamento INT PRIMARY KEY,
+                ID_Jefe INT,  
+                Descripcion VARCHAR(100)
+            );
+            
+            -- Tabla JefeDepartamento
+            CREATE TABLE JefeDepartamento (
+                ID_Jefe INT PRIMARY KEY,
+                Primer_Nombre VARCHAR(50),   
+                Segundo_Nombre VARCHAR(50),  
+                Apellido_Paterno VARCHAR(50), 
+                Apellido_Materno VARCHAR(50),
+                Correo VARCHAR(100),        
+                Domicilio VARCHAR(150),      
+                CURP VARCHAR(18),            
+                RFC VARCHAR(13),              
+                Telefono VARCHAR(20)
+            );
+            
+            -- Tabla RequerimientoServicio
+            CREATE TABLE RequerimientoServicio (
+                ID_Requerimiento INT, 
+              ID_Servicio INT
+            );
+            
+            ALTER TABLE RequerimientoServicio
+            ADD CONSTRAINT FK_Servicio_RequerimientoS FOREIGN KEY (ID_Servicio)
+            REFERENCES Servicio(ID_Servicio);
+            
+            ALTER TABLE RequerimientoServicio
+            ADD CONSTRAINT FK_Servicio_Requerimiento FOREIGN KEY (ID_Requerimiento)
+            REFERENCES Requerimiento(ID_Requerimiento);
+            
+            ALTER TABLE Servicio
+            ADD CONSTRAINT FK_Servicio_Departamento FOREIGN KEY (ID_Departamento)
+            REFERENCES Departamento(ID_Departamento);
+            
+            ALTER TABLE Departamento
+            ADD CONSTRAINT FK_Departamento_Jefe FOREIGN KEY (ID_Jefe)
+            REFERENCES JefeDepartamento(ID_Jefe);
            </code></pre>
 
        <h2>Código SQL para la incercion de registros a la Base de Datos</h2>
            <pre><code>
       
-INSERT INTO Servicio (ID_Servicio, ID_Departamento, Tipo_Servicio, Descuento, Costo) VALUES
-(1, 1, 'Mantenimiento', 10, 150),
-(2, 2, 'Limpieza', 5, 100),
-(3, 1, 'Seguridad', 0, 200),
-(4, 3, 'Asesoría', 15, 250),
-(5, 2, 'Transporte', 20, 80);
 
-INSERT INTO Departamento (ID_Departamento, Descripcion) VALUES
-(1, 'Mantenimiento'),
-(2, 'Limpieza'),
-(3, 'Seguridad'),
-(4, 'Asesoría'),
-(5, 'Transporte');
-
-INSERT INTO JefeDepartamento (ID_Jefe, ID_Departamento, FName, LName, Telefono) VALUES
-(1, 1, 'Juan', 'Pérez', '555-1234'),
-(2, 2, 'Ana', 'García', '555-5678'),
-(3, 3, 'Luis', 'Martínez', '555-8765'),
-(4, 4, 'María', 'Lopez', '555-4321'),
-(5, 5, 'Carlos', 'Hernández', '555-6789');
-
-
-INSERT INTO RequerimientoServicio (ID_Requerimiento, ID_Servicio, Comprobante_Identidad, Comprobante_nomina) VALUES
-(1, 1, 'ID123456', 'S'),
-(2, 2, 'ID654321', 'N'),
-(3, 3, 'ID987654', 'S'),
-(4, 4, 'ID456789', 'S'),
-(5, 5, 'ID789456', 'N');
+            INSERT INTO Servicio (ID_Servicio, ID_Departamento, Tipo_Servicio, Descuento, Costo) VALUES
+            (1, 1, 'Limpieza', 10.0, 100.0),
+            (2, 1, 'Mantenimiento', 15.0, 200.0),
+            (3, 2, 'Transporte', 5.0, 50.0),
+            (4, 2, 'Asesoría', 20.0, 150.0),
+            (5, 3, 'Catering', 25.0, 300.0);
+            
+            INSERT INTO RequerimientoServicio (ID_Requerimiento, ID_Servicio) VALUES
+            (1, 1),
+            (1, 3),
+            (2, 2),
+            (3, 4),
+            (4, 5);
+            
+            INSERT INTO Requerimiento (ID_Requerimiento, Comprobante_Identidad, Comprobante_nomina) VALUES
+            (1, '1234567890', 'A1'),
+            (2, '0987654321', 'B2'),
+            (3, '1122334455', 'C3'),
+            (4, '5566778899', 'D4'),
+            (5, '2233445566', 'E5');
+            
+            
+            INSERT INTO Departamento (ID_Departamento, ID_Jefe, Descripcion) VALUES
+            (1, 1, 'Limpieza'),
+            (2, 2, 'Logística'),
+            (3, 3, 'Catering'),
+            (4, 4, 'Mantenimiento'),
+            (5, 5, 'Asesoría');
+            
+            
+            INSERT INTO JefeDepartamento (ID_Jefe, Primer_Nombre, Segundo_Nombre, Apellido_Paterno, Apellido_Materno, Correo, Domicilio, CURP, RFC, Telefono) VALUES
+            (1, 'Juan', 'Pérez', 'Gómez', 'López', 'juan.perez@example.com', 'Calle 1, Ciudad', 'JUAPG123456HDFLNS', 'PGJ123456789', '5551234567'),
+            (2, 'María', 'Fernández', 'Martínez', 'García', 'maria.fernandez@example.com', 'Calle 2, Ciudad', 'MAFM123456HDFLNS', 'FMN123456789', '5552345678'),
+            (3, 'Carlos', 'Sánchez', 'Ramírez', 'Hernández', 'carlos.sanchez@example.com', 'Calle 3, Ciudad', 'CARS123456HDFLNS', 'SNR123456789', '5553456789'),
+            (4, 'Ana', 'García', 'López', 'Torres', 'ana.garcia@example.com', 'Calle 4, Ciudad', 'ANGL123456HDFLNS', 'GLZ123456789', '5554567890'),
+            (5, 'Luis', 'Martínez', 'Hernández', 'Gutiérrez', 'luis.martinez@example.com', 'Calle 5, Ciudad', 'LUMH123456HDFLNS', 'MRT123456789', '5555678901');
+            
+            
            </code></pre>
 </body>
 
