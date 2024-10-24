@@ -22,22 +22,22 @@
     ya que permite almacenar y gestionar eficientemente la información relacionada con los diversos servicios ofrecidos,
      por los siguientes aspectos: </p>
 
-     <h4>Tabla "Departamento": </h4>
+     <h5>Tabla "Departamento": </h5>
 
        <li>Esta tabla almacena la información de los diferentes departamentos que están relacionados con los servicios presidenciales.
          Esto permite una organización y categorización adecuada de los servicios. </li>
        <li>Los campos "ID_Departamento" y "Descripcion" son relevantes para identificar y caracterizar cada departamento.</li>
 
 
-     <h4>Tabla "JefeDepartamento": </h4>
+     <h5>Tabla "JefeDepartamento": </h5>
 
        <li>Esta tabla guarda los datos de los jefes de cada departamento, como su nombre, apellido y número de teléfono. </li>
        <li>Esto permite tener un registro de los responsables de cada departamento y facilita la comunicación y coordinación entre ellos.</li>
  
 
-     <h4>Tabla "Servicio": </h4>
+     <h5>Tabla "Servicio": </h5>
 
-       <li>Esta tabla es el núcleo del subsistema, ya que almacena la información detallada de cada servicio presidencial </li>
+       <li>Esta tabla es la que almacena la información detallada de cada servicio presidencial </li>
        <li>Los campos "ID_Servicio", "ID_Departamento", "Tipo_Servicio", "Descuento", "Costo" son fundamentales para caracterizar cada servicio de manera completa.</li>
 
        <h4>Tabla "RequeriemientoServicio": </h4>
@@ -49,7 +49,7 @@
          Por ejemplo, la relación entre "Departamento" y "Servicio" permite vincular cada servicio con el departamento correspondiente,
          lo cual es fundamental para la organización y gestión de los servicios  </p>
    
-      <h2>Como es que la pertinencia de laarquitectura de la base de datos satisfase los requerimientos de cada Usuario</h2>
+      <h2>Como es que la pertinencia de la arquitectura de la base de datos satisfase los requerimientos de cada Usuario</h2>
 
       <p>Para el administrador, la estructura de la base de datos facilita la modificación de los elementos clave del sistema. En la tabla "Servicio",
         el administrador puede actualizar fácilmente el "Costo" de los servicios cuando sea necesario. Además, en la tabla "RequeriemientoServicio", el a
@@ -61,15 +61,29 @@
          Asimismo, al vincular cada servicio con su departamento correspondiente a través del campo "ID_Departamento", y al almacenar los detalles de los requerimientos en la tabla "RequeriemientoServicio",
          el ciudadano puede acceder a esta información y consultar los requisitos y el departamento relacionado con cada servicio. </p>
 
-         <h2>Cumplimiento de las tres primeras reglas </h2>
+         <h2>Cumplimiento de las tres primeras formas  normales </h1>
 
-         <p>En primer lugar, la base de datos cumple con la Primera Forma Normal (1NF). Cada entidad, como "Departamento", "JefeDepartamento" y "Requerimiento_Servicio", contiene únicamente valores atómicos en sus atributos, es decir, no hay grupos repetitivos o columnas que contengan múltiples valores. Además, cada fila es única gracias a la definición de una clave primaria en cada tabla. Esto asegura que no haya redundancia de datos y que cada registro pueda ser identificado de manera única.
-          En segundo lugar, la base de datos cumple con la Segunda Forma Normal (2NF). Todas las entidades ya están en 1NF, y los atributos no clave dependen completamente de la clave primaria, sin que haya dependencias parciales. Por ejemplo, en la entidad "JefeDepartamento", los atributos como "FName", "LName" y "Telefono" dependen por completo de la clave primaria compuesta por "ID_Jefe" e "ID_Departamento".
-          Finalmente, la base de datos también cumple con la Tercera Forma Normal (3NF). Todas las entidades ya están en 2NF, y no existen dependencias transitivas entre los atributos no clave. Los datos se encuentran desagregados en entidades separadas, como "Departamento" y "Servicio", lo que evita que haya atributos que dependan de otros atributos no clave.
-          Al cumplir con estas tres formas normales, la base de datos garantiza una organización eficiente de los datos, evitando la redundancia y asegurando la consistencia de la información. Esto facilita la gestión, el mantenimiento y la integridad de los datos, lo cual es crucial para un subsistema de servicios donde la confiabilidad y la precisión de la información son fundamentales.
-           </p>
+        
+         <h5>Cumplimiento de la primera forma normal (1NF)</h5>
+
+         <p>En primer lugar, la base de datos cumple con la Primera Forma Normal (1NF). Cada entidad, como "Departamento", "JefeDepartamento" y "Requerimiento_Servicio", contiene únicamente valores atómicos en sus atributos,
+           es decir, no hay grupos repetitivos o columnas que contengan múltiples valores. Además, cada fila es única gracias a la definición de una clave primaria en cada tabla.
+            Esto asegura que no haya redundancia de datos y que cada registro pueda ser identificado de manera única.</p>
+
+          <h5>Cumplimiento de la segunda forma normal (2NF)</h5>
+
+         <p>En primer lugar, la base de datos cumple con la Primera Forma Normal (1NF). Cada entidad, como "Departamento", "JefeDepartamento" y "Requerimiento_Servicio", contiene únicamente valores atómicos en sus atributos,
+           es decir, no hay grupos repetitivos o columnas que contengan múltiples valores. Además, cada fila es única gracias a la definición de una clave primaria en cada tabla.
+            Esto asegura que no haya redundancia de datos y que cada registro pueda ser identificado de manera única.</p>
+
+            <h5>Cumplimiento de la tercera forma normal (3NF)</h5>
+
+            <p>Finalmente, la base de datos también cumple con la Tercera Forma Normal (3NF). Todas las entidades ya están en 2NF, y no existen dependencias transitivas entre los atributos no clave. 
+              Los datos se encuentran desagregados en entidades separadas, como "Departamento" y "Servicio", lo que evita que haya atributos que dependan de otros atributos no clave.</p>
+   
+
       
-           <h1>Código SQL para la Base de Datos</h1>
+         <h5>Código SQL para la Base de Datos</h2>
            <pre><code>
        CREATE DATABASE STOPS_BD_2;
        
@@ -120,7 +134,7 @@
        REFERENCES Departamento(ID_Departamento);
            </code></pre>
 
-           <h1>Código SQL para la incercion de registros a la Base de Datos</h1>
+       <h2>Código SQL para la incercion de registros a la Base de Datos</h2>
            <pre><code>
       
 INSERT INTO Servicio (ID_Servicio, ID_Departamento, Tipo_Servicio, Descuento, Costo) VALUES
