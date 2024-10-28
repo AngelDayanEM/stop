@@ -7,62 +7,83 @@
     <link rel="stylesheet" href="../css/dbcss.css">
 </head>
 <body>
-    <ul></ul>
-    <li><a href="./../index.html">Principal</a></li>
-    <li><a href="./../Subsistemas/Servicios.html">Servicios</a></li>
-</ul>
-<h1>Diagrama de la base de datos del subsistema</h1>
+  <header>
+    <nav>
+        <ul>
+            <li><a href="./../index.html">Principal</a></li>
+            <li><a href="./../Subsistemas/Servicios.html">Servicios</a></li>
+        </ul>
+    </nav>
+</header>
 
-<img src="../imagenes/DiagramaBD.png" alt="" width="600">
-
-
+<main>
+    <section>
+        <h1>Diagrama de la base de datos del subsistema</h1>
+        <img src="../imagenes/DiagramaBD.png" alt="Diagrama de la base de datos" class="db-diagram">
+    </section>
+    <section>
 <h2>Pertinencia de la arquitectura de la base de datos</h2>
 
 <p> La arquitectura de esta base de datos es adecuada y pertinente para el subsistema de servicios (presidenciales), 
     ya que permite almacenar y gestionar eficientemente la información relacionada con los diversos servicios ofrecidos,
      por los siguientes aspectos: </p>
-
+     <section>
      <h4>Tabla "Departamento": </h4>
-
+     <ul>
        <li>Esta tabla almacena la información de los diferentes departamentos que están relacionados con los servicios presidenciales. </li>
-       <li>El identificador único (ID_Departamento), la descripción del departamento (Descripcion) y el identificador único del jefe de departamento (ID_Jefe).</li>
+       <li>El identificador único (ID_Departamento), la descripción del departamento (Descripcion) y el identificador único del jefe de departamento (ID_Jefe), son los campos que guardarán dicha información.</li>
        <li>El campo "ID_Jefe" es la llave foránea que relaciona la tabla "Departamento" con la tabla "JefeDepartamento". 
         Esta relación permite asociar cada departamento con el jefe correspondiente.
         Al tener esta relación, se puede obtener información detallada sobre el responsable de cada departamento,lo cual es relevante para una organización y categorización adecuada de los servicios. </li>
 
+      </ul>
 
      <h4>Tabla "JefeDepartamento": </h4>
+     <ul>
 
        <li>Esta tabla guarda los datos de los jefes de cada departamento,esta tabla contiene la información del jefe de cada departamento, como su identificador único (ID_Jefe), primer nombre (Primer_Nombre), 
         segundo nombre (Segundo_Nombre), apellido paterno (Apellido_Paterno), apellido materno (Apellido_Materno),  Etc. </li>
        <li>Esto permite tener un registro de los responsables de cada departamento y facilita la comunicación y coordinación entre ellos.</li>
  
+      </ul>
 
      <h4>Tabla "Servicio": </h4>
+     <ul>
 
        <li>Esta tabla es la que almacena la información detallada de cada servicio presidencial </li>
        <li>Hablando de manera mas espicifica contiene su identificador único (ID_Servicio), el departamento al que pertenece (ID_Departamento), 
         el tipo de servicio (Tipo_Servicio), el descuento aplicable (Descuento) y el costo (Costo).
         Al tener esta información permite administrar y mantener un registro de todos los servicios ofrecidos de manera organizada.</li>
+      </ul>
 
         <h4>Tabla "Requerimiento": </h4>
+        <ul>
 
        <li>Esta tabla va almacenar la información sobre los diferentes tipos de requerimientos relacionados con los servicios </li>
        <li>Esta tabla esta conformada por los campos,ID_Requerimiento,  Comprobante_Identidad, Comprobante_nomina, .
         Al tener esta información se puede administrar de manera más flexible y detallada los diferentes tipos de requisitos que pueden aplicar a los servicios, sin mezclarlos directamente en la tabla "Servicio".</li>
+      </ul>
 
        <h4>Tabla "RequeriemientoServicio": </h4>
+       <ul>
 
        <li>Esta tabla contiene los campos que permiten vincular los registros de la tabla "Servicio" con los registros de la tabla "Requerimiento". Los cuales son "ID_Servicio" y "ID_Requerimiento", que funcionan como llaves foráneas que apuntan a las tablas principales.
          Es decir que esta tabla actúa como la tabla puente entre las tablas "Servicio" y "Requerimiento" para administrar de manera más eficiente la relación entre los servicios y los requerimientos. </li>
        <li>Esto permite agregar, modificar o eliminar requerimientos específicos para cada servicio sin afectar directamente la información de las tablas principales.
         Además, se puede obtener información detallada sobre qué requerimientos aplican a cada servicio y viceversa.</li>
+      </ul>
 
+      <ul>
        <p> Asi mismo, las relaciones entre las tablas son óptimas ya que facilitan la consulta y el manejo de la información.
          Por ejemplo, la relación entre "Departamento" y "Servicio" permite vincular cada servicio con el departamento correspondiente,
          lo cual es fundamental para la organización y gestión de los servicios  </p>
+        </ul>
+      </section>
+  </section>
+
+  <section>
    
-      <h2>Como es que la pertinencia de la arquitectura de la base de datos satisfase los requerimientos de cada Usuario</h2>
+      <h2>Como es que la pertinencia de la arquitectura de la base de datos satisfase los requerimientos de cada usuario</h2>
 
       <h3>Requerimientos del Administrador</h3>
       <p>El administrador tiene la responsabilidad de gestionar la base de datos y asegurar su correcto funcionamiento. Sus requerimientos son:</p>
@@ -95,32 +116,34 @@
       </ol>
          <h2>Cumplimiento de las tres primeras formas  normales </h1>
 
-        
-         <h4>Cumplimiento de la primera forma normal (1NF)</h4>
+          <section>
 
+         <h4>Cumplimiento de la primera forma normal (1NF)</h4>
+         <ul>
          <p>La 1NF asegura que todos los atributos de cada tabla contienen valores atómicos, es decir, cada campo de la tabla almacena un solo valor indivisible. 
           En la base de datos, esto se cumple porque todos los atributos, como "Tipo_Servicio", "Costo", "Comprobante_Identidad", "Apellido_Paterno", etc., almacenan valores individuales y no listas o conjuntos de valores. 
           Además, no hay campos que contengan múltiples valores en una sola celda, lo que garantiza que la estructura de la base de datos sea clara y no haya duplicación de información en una misma columna.</p>
-
+         </ul>
           <h4>Cumplimiento de la segunda forma normal (2NF)</h4>
-
+          <ul>
          <p>La 2NF requiere que, además de estar en 1NF, no haya dependencias parciales de la clave primaria. Esto significa que todos los atributos no clave deben depender completamente de la clave primaria y no solo de una parte de ella (si la clave es compuesta).
            En el caso de la tabla RequerimientoServicio, que tiene una clave primaria compuesta por ID_Requerimiento y ID_Servicio, no hay dependencias parciales, ya que esta tabla solo almacena las claves foráneas de los requerimientos y servicios.
             Las otras tablas, como Servicio, Departamento, y Requerimiento, tienen claves primarias simples, lo que también asegura que todos los demás atributos dependen completamente de la clave primaria.</p>
-
+         </ul>
             <h4>Cumplimiento de la tercera forma normal (3NF)</h4>
-
+        <ul>
             <p>La 3NF garantiza que, todas las entidades ya están en 2NF, tampoco existan dependencias transitivas entre los atributos no clave. Esto significa que ningún atributo no clave debe depender de otro atributo no clave, solo deben depender de la clave primaria. 
               En la base de datos, esto se cumple, ya que no existen relaciones indirectas entre los atributos no clave. 
               Por ejemplo, en la tabla Servicio, los atributos como "Tipo_Servicio", "Descuento" y "Costo" dependen directamente de ID_Servicio. En la tabla JefeDepartamento, atributos como "Apellido_Paterno" y "Correo" dependen directamente de ID_Jefe, sin generar dependencias entre los atributos no clave.</p>
-   
+            </ul>
+            </section>
 
       
          <h2>Código SQL para crear la Base de Datos</h2>
            <pre><code>
-            CREATE DATABASE STOPS_BD_3
+            CREATE DATABASE STOPS_BD
 
-            USE STOPS_BD_3
+            USE STOPS_BD
             
             GO
             
@@ -227,6 +250,8 @@
             
             
            </code></pre>
+          </main>
+
 </body>
 
 

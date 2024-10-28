@@ -1,49 +1,81 @@
-/* style.css */
-
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    background-color: #e9f5ec; /* Verde pastel suave */
-    color: #333; /* Color de texto oscuro para contraste */
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    background-color: #f5f5f5;
 }
 
-h1, h2, h4 {
-    color: #240202; /* Verde más oscuro para encabezados */
+/* Estilos de encabezado y navegación */
+header {
+    background-color: #333;
+    padding: 1rem;
 }
 
-ul {
-    list-style-type: none; /* Eliminar viñetas de la lista */
-    padding: 0; /* Eliminar padding predeterminado */
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
 }
 
-li {
-    margin: 5px 0; /* Espaciado entre elementos de lista */
+nav ul li {
+    margin: 0 1rem;
 }
 
-a {
-    text-decoration: none; /* Sin subrayado */
-    color: #2b7a2b; /* Color de enlace verde */
+nav a {
+    color: #fff;
+    text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline; /* Subrayado al pasar el mouse */
-    color: #1e5a1e; /* Un verde más oscuro al pasar el mouse */
+/* Estilos de secciones y contenido */
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
 }
 
-img {
-    max-width: 100%; /* Asegurar que la imagen sea responsiva */
-    height: auto; /* Mantener la proporción de la imagen */
+section {
+    margin-bottom: 2rem;
 }
 
-pre {
-    background-color: #fff; /* Fondo blanco para el código */
-    border: 1px solid #ccc; /* Borde gris */
-    border-radius: 4px; /* Bordes redondeados */
-    padding: 10px; /* Espaciado interno */
-    overflow-x: auto; /* Permitir desplazamiento horizontal */
+h1, h2, h3, h4 {
+    color: #333;
 }
 
-code {
-    font-family: 'Courier New', Courier, monospace; /* Tipo de letra monoespaciada para el código */
+.db-diagram {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+}
+
+/* Estilos de lista y tablas */
+ul, ol {
+    padding-left: 2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Estilos de pie de página */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
 }
