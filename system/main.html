@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Servicio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Formulario de Servicio</h2>
+<form id="servicioForm">
+    <div class="form-group">
+        <label for="idServicio">Id del servicio:</label>
+        <input type="text" name="idServicio" id="idServicio" required>
+    </div>
+    <div class="form-group">
+        <label for="tipoServicio">Tipo de servicio:</label>
+        <input type="text" name="tipoServicio" id="tipoServicio" required>
+    </div>
+    <div class="form-group">
+        <label for="descuento">Descuento (%):</label>
+        <input type="number" name="descuento" id="descuento" min="0" max="100" required>
+    </div>
+    <div class="form-group">
+        <label for="costo">Costo:</label>
+        <input type="number" name="costo" id="costo" required>
+    </div>
+    <div class="form-group">
+        <label for="departamento">Departamento Perteneciente:</label>
+        <input type="text" name="departamento" id="departamento" required>
+    </div>
+    <button type="submit" class="button">Crear</button>
+</form>
+
+<script>
+    document.getElementById('servicioForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Aquí puedes agregar la lógica para manejar el envío del formulario
+        alert('Servicio creado con éxito');
+    });
+</script>
+
+</body>
+</html>
